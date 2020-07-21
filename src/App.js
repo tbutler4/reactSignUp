@@ -3,7 +3,9 @@ import aqua from './img/aq.jpeg'
 import './App.css';
 import 'fontsource-roboto';
 import {
+  TextField,
   Card, 
+  Radio,
   Button, 
   CardContent, 
   Typography, 
@@ -18,6 +20,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 function App() {
   const classes = useStyles();
+  const [selectedValue, setselectedValue] = React.useState('female');
+
+  const handleChange = (event) => {
+    setselectedValue(event.target.value);
+  };
+
 
   return (
     <Card className={classes.container}>
@@ -43,20 +51,86 @@ function App() {
             <Grid item xs={6}>
               <Paper className={classes.paperRight}>
                 <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Word of the Day
-                     </Typography>
-                  <Typography variant="h5" component="h2">
-                    belent
-                     </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    adjective
-                      </Typography>
-                  <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                     <br />
-                    {'"a benevolent smile"'}
-                  </Typography>
+                  <form className={classes.oot} noValidate autoComplete="off">
+                    <TextField
+                      id="filled-full-width"
+                      label="Label"
+                      style={{ margin: 8 }}
+                      placeholder="Placeholder"
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="filled"
+                    />
+                    <TextField
+                      id="filled-full-width"
+                      label="Label"
+                      style={{ margin: 8 }}
+                      placeholder="Placeholder"
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="filled"
+                    />
+                    <Radio
+                      checked={selectedValue === 'a'}
+                      onChange={handleChange}
+                      value="a"
+                      name="radio-button-demo"
+                      inputProps={{ 'aria-label': 'A' }}
+                    />Male
+                    <Radio
+                      checked={selectedValue === 'b'}
+                      onChange={handleChange}
+                      value="b"
+                      name="radio-button-demo"
+                      inputProps={{ 'aria-label': 'B' }}
+                    />Female
+                    <TextField
+                      id="filled-full-width"
+                      label="Label"
+                      style={{ margin: 8 }}
+                      placeholder="Placeholder"
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="filled"
+                    />
+                    <TextField
+                      id="filled-full-width"
+                      label="Label"
+                      style={{ margin: 8 }}
+                      placeholder="Placeholder"
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="filled"
+                    />
+                    <TextField
+                      id="filled-full-width"
+                      label="Label"
+                      style={{ margin: 8 }}
+                      placeholder="Placeholder"
+                      helperText="Full width!"
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      variant="filled"
+                    />
+                    <Button color="secondary">Bronze</Button>
+                    <Button color="secondary">Silver</Button>
+                    <Button color="secondary">Gold</Button>
+                  </form>
                 </CardContent>
               </Paper>
             </Grid>
