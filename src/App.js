@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import aqua from './img/aq.jpeg'
 import './App.css';
 import 'fontsource-roboto';
@@ -20,13 +20,39 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 function App() {
   const classes = useStyles();
-  const [selectedValue, setselectedValue] = React.useState('female');
+  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [name, setName] = useState('Full Name');
+  const [email, setEmail] = useState('Email');
+  const [date, setDate] = useState('May, 25, 1977');
+  const [city, setCity] = useState('City');
+  const [country, setCountry] = useState('Country');
+  const [subscription, setSubscription] = useState('');
+  const [thing, setThing] = useState('');
 
+  function handleName(e) {
+    setName(e.target.value);
+    console.log(name)
+  }
+  function handleEmail(e) {
+    setEmail(e.target.value);
+    console.log(email)
+  }
+  function handleDate(e) {
+    setDate(e.target.value);
+    console.log(date)
+  }
+  function handleCity(e) {
+    setCity(e.target.value);
+    console.log(city)
+  }
+  function handleCountry(e) {
+    setCountry(e.target.value);
+    console.log(country)
+  }
   const handleChange = (event) => {
-    setselectedValue(event.target.value);
+    setSelectedValue(event.target.value);
   };
-
-
+  
   return (
     <Card className={classes.container}>
       <Card className={classes.root}>
@@ -51,30 +77,31 @@ function App() {
             <Grid item xs={6}>
               <Paper className={classes.paperRight}>
                 <CardContent>
+                  <p style={{ color: '#00CCCC', textAlign: 'center', fontSize: 24, marginTop: -15 }}>Registration</p>
                   <form className={classes.oot} noValidate autoComplete="off">
                     <TextField
                       id="filled-full-width"
-                      label="Label"
                       style={{ margin: 8 }}
-                      placeholder="Placeholder"
+                      placeholder={name}
                       fullWidth
                       margin="normal"
                       InputLabelProps={{
                         shrink: true,
                       }}
                       variant="filled"
+                      onChange={handleName}
                     />
                     <TextField
                       id="filled-full-width"
-                      label="Label"
                       style={{ margin: 8 }}
-                      placeholder="Placeholder"
+                      placeholder={email}
                       fullWidth
                       margin="normal"
                       InputLabelProps={{
                         shrink: true,
                       }}
                       variant="filled"
+                      onChange={handleEmail}
                     />
                     <Radio
                       checked={selectedValue === 'a'}
@@ -82,6 +109,7 @@ function App() {
                       value="a"
                       name="radio-button-demo"
                       inputProps={{ 'aria-label': 'A' }}
+                      onClick={() => setThing('Male')}
                     />Male
                     <Radio
                       checked={selectedValue === 'b'}
@@ -89,47 +117,64 @@ function App() {
                       value="b"
                       name="radio-button-demo"
                       inputProps={{ 'aria-label': 'B' }}
+                      onClick={() => setThing('Female')}
                     />Female
                     <TextField
                       id="filled-full-width"
-                      label="Label"
                       style={{ margin: 8 }}
-                      placeholder="Placeholder"
+                      placeholder={date}
                       fullWidth
                       margin="normal"
                       InputLabelProps={{
                         shrink: true,
                       }}
                       variant="filled"
+                      onChange={handleDate}
                     />
                     <TextField
                       id="filled-full-width"
-                      label="Label"
                       style={{ margin: 8 }}
-                      placeholder="Placeholder"
+                      placeholder={city}
                       fullWidth
                       margin="normal"
                       InputLabelProps={{
                         shrink: true,
                       }}
                       variant="filled"
+                      onChange={handleCity}
                     />
                     <TextField
                       id="filled-full-width"
-                      label="Label"
-                      style={{ margin: 8 }}
-                      placeholder="Placeholder"
-                      helperText="Full width!"
+                      style={{ margin: 8, marginBottom: 25}}
+                      placeholder={country}
                       fullWidth
                       margin="normal"
                       InputLabelProps={{
                         shrink: true,
                       }}
                       variant="filled"
+                      onChange={handleCountry}
                     />
-                    <Button color="secondary">Bronze</Button>
-                    <Button color="secondary">Silver</Button>
-                    <Button color="secondary">Gold</Button>
+                    Subscription<Button className={classes.button} color="secondary" onClick={() => setSubscription('Bronze')}>Bronze</Button>
+                    <Button color="secondary" onClick={() => setSubscription('Silver')} >Silver</Button>
+                    <Button color="secondary" onClick={() => setSubscription('Gold')}>Gold</Button>
+                    <br/>
+                    <Button variant="contained" size="medium" color="primary" className={classes.confirm}>
+                      Cancel
+                    </Button>
+                    <Button variant="contained" size="medium" color="primary" 
+                    onClick={() => window.alert(`
+                    Name: ${name}
+                    Email: ${email}
+                    Gender: ${thing}
+                    Date: ${date}
+                    City: ${city}
+                    Country: ${country}
+                    Subscription: ${subscription}
+                    `)}
+                    >
+                      Confirm
+                    </Button>
                   </form>
                 </CardContent>
               </Paper>
@@ -182,8 +227,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     color: 'black',
   },
-  pos: {
-    marginBottom: 12,
+  button: {
+    marginLeft: 100,
+  },
+  confirm: {
+    marginLeft: 200,
+    marginRight: 20,
   },
 }));
 
